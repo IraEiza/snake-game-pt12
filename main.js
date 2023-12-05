@@ -1,7 +1,11 @@
 import  { Snake } from "./snake.js"
+import { Food } from "./food.js"
 
 var snake = new Snake(4, 5)
 snake.draw()
+
+var food = new Food(6, 6)
+food.draw()
 
 window.addEventListener('keydown', function(e) {
   switch (e.key) {
