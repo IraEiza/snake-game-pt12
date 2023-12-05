@@ -30,4 +30,7 @@ function gameLoop() {
   snake.updateCoords()
   snake.erase()
   snake.draw()
+  if(snake.x === food.x && snake.y === food.y) {
+    food.respawn()
+  }
 }
