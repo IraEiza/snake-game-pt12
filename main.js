@@ -1,3 +1,4 @@
+import  { Snake } from "./snake.js"
 
 var snake = new Snake(4, 5)
 snake.draw()
@@ -17,7 +18,12 @@ window.addEventListener('keydown', function(e) {
       snake.direction = 'right'
       break
   }
+})
+
+var moovement = setInterval( gameLoop, 100)
+
+function gameLoop() {
   snake.updateCoords()
   snake.erase()
   snake.draw()
-})
+}

@@ -46,3 +46,5 @@ Snake.prototype.erase = function() {
   var snakeCell = document.querySelector('.snake')
   snakeCell.classList.remove('snake')
 }
+
+export  {Snake}
