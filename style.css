@@ -1,0 +1,18 @@
+table {
+  background-color: green;
+  margin: 100px auto;
+}
+
+td {
+  width: 40px;
+  height: 40px;
+  background-color: rgb( 0, 100, 0);
+}
+
+.snake {
+  background-color: rgb(17, 243, 149);
+}
+
+.food {
+ background-color: red;
+}
