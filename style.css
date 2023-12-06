@@ -14,5 +14,8 @@ td {
 }
 
 .food {
- background-color: red;
+ background-image: url(./sources/manzana2.png);
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
 }

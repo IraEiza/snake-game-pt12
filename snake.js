@@ -1,50 +1,72 @@
 function Snake(x, y) {
-  this.x = x
-  this.y = y
+  this.cells = [{x: x, y: y}]
   this.direction = null  // 'up', 'down', 'left', 'right'
+  this.isEating = false
 }
 
 Snake.prototype.draw = function() {
-  var snakeCell = document.querySelector(`.row${this.y}>.col${this.x}`)
-  snakeCell.classList.add('snake')
+  this.cells.forEach(function(cell) {
+    var snakeCell = document.querySelector(`.row${cell.y}>.col${cell.x}`)
+    snakeCell.classList.add('snake')
+  })
 }
 
 Snake.prototype.updateCoords = function() {
+  var copyFirstCell = {x: this.cells[0].x, y: this.cells[0].y}
+  this.cells.unshift(copyFirstCell)
+
   switch (this.direction) {
     case 'up':
-      if(this.y === 1) {
-        this.y = 20
+      if(copyFirstCell.y === 1) {
+        copyFirstCell.y = 20
       } else {
-        this.y--
+        copyFirstCell.y--
       }
       break
     case 'left':
-      if(this.x === 1) {
-        this.x = 20
+      if(copyFirstCell.x === 1) {
+        copyFirstCell.x = 20
       } else {
-        this.x--
+        copyFirstCell.x--
       }
       break
     case 'down':
-      if(this.y === 20) {
-        this.y = 1
+      if(copyFirstCell.y === 20) {
+        copyFirstCell.y = 1
       } else {
-        this.y++
+        copyFirstCell.y++
       }
       break
     case 'right':
-      if(this.x === 20) {
-        this.x = 1
+      if(copyFirstCell.x === 20) {
+        copyFirstCell.x = 1
       } else {
-        this.x++
+        copyFirstCell.x++
       }
       break
+  }
+  if(this.isEating === false) {
+    this.cells.pop()
+  } else {
+    this.isEating = false
   }
 }
 
 Snake.prototype.erase = function() {
-  var snakeCell = document.querySelector('.snake')
-  snakeCell.classList.remove('snake')
+  var snakeCells = document.querySelectorAll('.snake')
+  snakeCells.forEach(function(cell) {
+    cell.classList.remove('snake')
+  }) 
+}
+
+Snake.prototype.checkOverlap = function() {
+  var head = this.cells[0]
+  for(let i = 1; i < this.cells.length; i++){
+    if(head.x === this.cells[i].x && head.y === this.cells[i].y) {
+      this.isDead = true
+      return true
+    }
+  }
 }
 
 export  {Snake}
